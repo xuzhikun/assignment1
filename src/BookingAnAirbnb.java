@@ -1,3 +1,5 @@
+import java.util.List;
+
 /**
  * Created by zhikunxu on 9/12/16.
  */
@@ -27,16 +29,16 @@ class Customer {
     String name;
     String address;
     void visitWebsite(Airbnb airbnb){}
-    Room findRooms(Room rooms[]){}
+    Room findRoom(Room[] room){}
     void placeOrder(Room room){}
-    Payment payMoneyToWebsite(Airbnb airbnb){}
+    Payment4Room payMoneyToWebsite(Airbnb airbnb){}
 
 }
 
 class Airbnb {
     Room[] rooms; //Array of Room
     Room[] displayRooms(Room rooms[]){}
-    void acceptPayment(Customer customer, Payment money){}
+    void acceptPayment(Customer customer, Payment4Room money){}
 }
 
 class Room {
@@ -49,7 +51,7 @@ class Room {
     String getName(){}
 }
 
-class Payment {
+class Payment4Room {
     float amount;
 }
 
@@ -66,9 +68,9 @@ class BookingAirbnb {
         jackson.visitWebsite(airbnb);
 
         Room[] roomsDisplayed = airbnb.displayRooms(rooms);
-        Room room = jackson.findRooms(roomsDisplayed);
+        Room room = jackson.findRoom(roomsDisplayed);
         jackson.placeOrder(room);
-        Payment payment = jackson.payMoneyToWebsite(airbnb);
+        Payment4Room payment = jackson.payMoneyToWebsite(airbnb);
         airbnb.acceptPayment(jackson, payment);
     }
 
