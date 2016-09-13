@@ -53,7 +53,7 @@ class Payment {
     float amount;
 }
 
-class PayTuition {
+class BookingAirbnb {
     public static void main(String args[]){
         Airbnb airbnb = new Airbnb();
 
