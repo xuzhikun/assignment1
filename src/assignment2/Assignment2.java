@@ -1,3 +1,5 @@
+import java.lang.System;
+
 /**
  * Assignment for your lecture 2. Please finish all the questions under
  * 'Assignment'. Please try the two questions under 'Bonus'. Please write some
@@ -29,8 +31,23 @@ public class Assignment2 {
      * and the gender is male
      */
     public void personType(Person person) {
-        if (person.age <= 1) {
+        int age = person.age;
+        int gender = person.gender;
 
+        if (age < 1) {
+            System.out.println("Infant");
+        }
+        else if (age >= 1 && age < 3) {
+            System.out.println("Toddler");
+        }
+        else if (age >= 3 && age < 5) {
+            System.out.println("Pre Schooler");
+        }
+        else if (age >= 5 && age < 6 && gender) {
+            System.out.println("KG Girl");
+        }
+        else if (age >= 5 && age < 6 && !gender) {
+            System.out.println("KG Boy");
         }
     }
 
@@ -41,6 +58,21 @@ public class Assignment2 {
      * 20(inclusive), print "Weird". If N is even and N>20, print "Not Weird".
      */
     public void weirdNumber(int n) {
+        if (n % 2 != 0) {
+            System.out.println("Weird");
+        }
+
+        if (n % 2 == 0 && n >= 2 && n <= 5) {
+            System.out.println("Not Weird");
+        }
+
+        if (n % 2 == 0 && n >= 6 && n <= 20) {
+            System.out.println("Weird");
+        }
+
+        if (n % 2 == 0 && n > 20) {
+            System.out.println("Not Weird");
+        }
 
     }
 
