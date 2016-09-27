@@ -9,16 +9,13 @@ public class Assignment3 {
      * Write a method to find N numbers which are power of three. e.g. n=4,
      * return {1,3,9,27}
      */
-    public void main(String[] args) {
-        System.out.println(findPowerOfThree(4));
-    }
     public int[] findPowerOfThree(int n) {
         if (n < 1) {
             return null;
         }
         int[] res = new int[n];
         for (int i = 0; i < n; i++) {
-            int[i] = Math.pow(3, i);
+            res[i] = Math.pow(3, i);
         }
         return res;
     }
@@ -28,7 +25,12 @@ public class Assignment3 {
      * For example, n = 100, return 1
      */
     public int countDigits(int n) {
-        return -1;
+        int k = n, digit = 1;
+        while (k / 10 != 0) {
+            k /= 10;
+            digit++;
+        }
+        return n % digit;
     }
 
     /**
@@ -37,7 +39,22 @@ public class Assignment3 {
      * 6
      */
     public void printNumbers(int n) {
-
+        if (n <= 0) {
+            System.out.println("illegal");
+        }
+        int e = 0, o = 1;
+        if (n % 2 == 0) {
+            for (int i = 0; i < n; i++) {
+                System.out.print(e + " ");
+                e += 2;
+            }
+        }
+        else {
+            for (int i = 0; i < n; i++) {
+                System.out.print(o + " ");
+                o += 2;
+            }
+        }
     }
 
     /**
@@ -45,8 +62,27 @@ public class Assignment3 {
      * example, given numRows = 5, return: [1] [1,1] [1,2,1] [1,3,3,1]
      * [1,4,6,4,1]
      */
-    public int[][] generatePascalsTriangle(int n) {
-        return null;
+    public List<List<Integer>> generatePascalsTriangle(int n) {
+        List<List<Integer>> res = new ArrayList<>();
+        if (n < 1) {
+            return res;
+        }
+        List<Integer> pre = new ArrayList<>();
+        pre.add(1);
+        res.add(pre);
+
+        for (int i = 2; i < n + 1; i++) {
+            List<Integer> curt = new ArrayList<>();
+            curt.add(1);
+            for (int j = 0; j < pre.size() - 1; j++) {
+                curt.add(pre.get(j) + pre.get(j + 1));
+            }
+            curt.add(1);
+            res.add(curt);
+            pre = curt;
+        }
+
+        return res;
     }
 
     /**
@@ -54,7 +90,32 @@ public class Assignment3 {
      * of a string. For example: Given s = "hello", return "holle".
      */
     public String reverseVowels(String s) {
-        return null;
+        if (s == null || s.length() == 0) {
+            return null;
+        }
+        int start = 0, end = s.length() - 1;
+        char[] chars = s.toCharArray();
+        while (start < end) {
+            String v = "aeiouAEIOU";
+            if (v.contains(String.valueOf(chars[start])) && v.contains(String.valueOf(chars[end]))) {
+                char tmp = chars[start];
+                chars[start] = chars[end];
+                chars[end] = tmp;
+                start++;
+                end--;
+            }
+            else if (!v.contains(String.valueOf(chars[start]))) {
+                start++;
+            }
+            else if (!v.contains(String.valueOf(chars[end]))) {
+                end--;
+            }
+        }
+        s = "";
+        for (char aChar : chars) {
+            s += aChar;
+        }
+        return s;
     }
 
     /**
@@ -64,7 +125,16 @@ public class Assignment3 {
      * sequence consists of non-space characters only.
      */
     public int lengthOfLastWord(String str) {
-        return -1;
+        if (str == null || str.length() == 0) {
+            return 0;
+        }
+        int lastSpace = -1;
+        for (int i = 0; i < str.length(); i++) {
+            if (str.charAt(i) == ' ') {
+                lastSpace = i;
+            }
+        }
+        return str.substring(lastSpace + 1, str.length()).length();
     }
 
     /**
@@ -72,7 +142,24 @@ public class Assignment3 {
      * soccer" --> "soccer like I"
      */
     public String reverseString2(String str) {
-        return null;
+        if (str == null || str.length() == 0) {
+            return null;
+        }
+
+        ArrayList<String> list = new ArrayList<>();
+        str += " ";
+        int k = 0;
+        for (int i = 0; i < str.length(); i++) {
+            if (str.charAt(i) == ' ') {
+                list.add(str.substring(k, i));
+                k = i + 1;
+            }
+        }
+        str = "";
+        for (int j = list.size() - 1; j >= 0; j--) {
+            str = str + list.get(j) + " ";
+        }
+        return str;
     }
 
     // Bonus
@@ -86,6 +173,24 @@ public class Assignment3 {
      * message only contains upper letter.
      */
     public int checkMessage(String message) {
-        return -1;
+        if (message == null || message.length() == 0 || message.length() % 3 != 0) {
+            return -1;
+        }
+        int res = 0;
+        for (int i = 0; i < message.length() - 2; i += 3) {
+            if (message.substring(i, i + 2).equals("SOS")) {
+                continue;
+            }
+            if (message.charAt(i) != 'S') {
+                res++;
+            }
+            if (message.charAt(i + 1) != 'O') {
+                res++;
+            }
+            if (message.charAt(i + 2) != 'S') {
+                res++;
+            }
+        }
+        return res;
     }
 }
