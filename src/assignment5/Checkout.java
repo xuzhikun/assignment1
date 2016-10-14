@@ -46,7 +46,7 @@ public class Checkout {
             res += String.format("%-30s %5s" , d.getName(), d.getCost()) + "\n";
         }
         res += String.format("%-31s %.2f" , "Tax",this.totalTax()) + "\n";
-        res += String.format("%-31s %.2f" , "Total cost", this.totalCost()) + "\n";
+        res += String.format("%-31s %.2f" , "Total cost", this.totalCost() + this.totalTax()) + "\n";
         return res;
     }
 }
