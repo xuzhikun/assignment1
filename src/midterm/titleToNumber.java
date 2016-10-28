@@ -1,7 +1,7 @@
 /**
  * Created by xuzhi on 10/28/2016.
  */
-public class titleToNumber {
+public class TitleToNumber {
     public int titleToNumber(String s) {
         if (s == null || s.length() == 0) return 0;
         int res = 0;
